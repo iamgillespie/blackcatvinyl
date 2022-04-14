@@ -1,0 +1,72 @@
+{% extends "adminlayout.html" %} {% block title %} BCV {% endblock %} {% block main %}
+
+<div class="container-fluid text-center">
+    {% for i in deetlist %}
+    <h6 class="display-6" style="color: crimson; text-transform: uppercase;">{{ i['crateid'] }}</h6>
+    {% endfor %}
+</div>
+    
+
+<h6 class="display-6" style="text-align: center;">Add to the crates</h6>
+<div class="container-fluid">
+    <div id="cratedigger">
+    <form method="post" action="/crateadd" enctype="multipart/form-data">
+        <div>
+            <input autocomplete="on" autofocus class="form-control mx-auto w-75" id="artist" name="artist" placeholder="artist" type="text" />
+        </div>
+        <br>
+        <div>
+            <input autocomplete="on" autofocus class="form-control mx-auto w-75" id="album" name="album" placeholder="album" type="text" />
+        </div>
+        <br>
+        <div>
+            <textarea rows="5" autocomplete="on" autofocus class="form-control mx-auto w-75" id="description" name="description" placeholder="description" type="text"></textarea>
+        </div>
+        <br>
+        <div>
+            <select class="form-select form-control mx-auto w-75" id="medium" name="medium">
+                <option selected>choose format - </option>
+                <option value="Vinyl">Vinyl</option>
+                <option value="Cassette">Cassette</option>
+                <option value="CD">CD</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <select class="form-select form-control mx-auto w-75" id="condition" name="condition">
+                <option selected>choose condition - </option>
+                <option value="poor">poor</option>
+                <option value="good">good</option>
+                <option value="very good">very good</option>
+                <option value="very good plus">very good +</option>
+                <option value="excellent">excellent</option>
+                <option value="near mint">near mint</option>
+                <option value="mint">mint</option>
+            </select>
+        </div>
+        <br>
+        <div>
+          <br>
+          <p style="color: white; text-align: center;">Upload a picture here</p>
+        </div>
+        <br>        
+        <div>
+            <input type="file" class="form-control form-control mx-auto w-75" id="cover" name="cover" aria-describedby="cover" aria-label="cover" />
+        </div>
+
+        <div>
+            <button hidden class="btn btn-outline-secondary" type="button" id="cover">cover pic</button>
+        </div>
+        <br>
+        <div class="d-flex">
+            <input type="number" step="any" class="form-control ms-auto w-25" id="price" name="price" placeholder="$15.99 how much?" />
+
+            <button class="form-control btn btn-success float-end w-auto me-auto" type="submit">submit</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+</table>
+
+{% endblock %}

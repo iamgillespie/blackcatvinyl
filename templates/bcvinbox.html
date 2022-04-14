@@ -1,0 +1,24 @@
+{% extends "adminlayout.html" %}
+
+{% block title %}
+    BCV
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container-fluid center w-100">
+{% for i in inbox %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title display-6 text-center">{{ i['name'] }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ i['email'] }}</h6>
+      <p class="card-text">Message: <i>{{ i['message'] }}</i></p>
+      <p class="card-text">registered email - </p></a>
+      <a href="mailto:'{{ i ['registration'] }}'" class="card-link">{{ i ['registration'] }}</a>
+    </div>
+  </div>
+  <br>
+{% endfor %}
+</div>
+{% endblock %}

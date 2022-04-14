@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BCV
+{% endblock %}
+
+
+{% block main %}
+{% for i in news %}
+
+<div class="container mt-lg-5">
+  <div class="row mx-auto p-0">
+
+<div class="col">
+  <img src="static/users/{{ i['photo'] }}" class="avatar">
+</div>    
+
+<div class="col text-end">
+  <h4>{{ i['date'] }}</h4>
+</div>
+
+</div>
+  <div class="mt-sm-2 p-1 bg-light text-dark">
+    <h1>{{ i['title'] }}</h1> 
+    <p>{{ i['post'] }}</p> 
+    <p class="text-end"> - {{ i['name'] }}</p>
+    
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}

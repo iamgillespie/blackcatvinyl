@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BCV
+{% endblock %}
+
+{% block main %}
+
+<div id="digcontainer" class="container-fluid mx-auto m-4">
+
+<div class="container w-75">
+
+    <form method="post" class="row g-3 middle" enctype="multipart/form-data">
+        <div>
+
+            <input type="text" autocomplete="off" name="lyrics" class="form-control" placeholder="share a line from a song that you enjoy with us!" value="{{ request.form['lyrics'] }}"></input>
+
+        </div>
+        <div>
+            <button class="btn btn-dark float-end" type="submit">Send</button> 
+        </div>
+
+    </form>
+
+
+
+          </div>
+
+</div>
+
+<div class="container mx-auto p-5" id="load">
+    {% for i in rndlyr %}
+    <a href="https://www.google.com/search?q={{ i['lyric'] }}" target="_blank">
+    <h6 class="display-6" id="lyrics"><i>
+        {{ i['lyric'] }}</i>
+    </h6>
+    </a>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

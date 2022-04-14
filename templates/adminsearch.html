@@ -1,0 +1,30 @@
+{% extends "adminlayout.html" %}
+
+{% block title %}
+    BCV
+{% endblock %}
+
+{% block main %}
+
+
+
+{% for i in qryres %}
+<div class="row">
+            <div id='digs' class="card" style="width:400px">
+            <img class="card-img-top" src="static/files/{{ i['crateid'] }}.jpg" alt="random dig">
+            <div class="card-body">
+              <h4 class="card-title display-4">Album - {{ i['album']}}</h4>
+              <h6 class="card-title display-6">Artist - {{ i['artist']}}</h6>
+              <p class="card-text">About - {{ i['description'] }}</p>
+              <p class="card-text"><i>Price - ${{ i['price'] }}</i></p>
+              <p class="card-text">Condition - {{ i['condition'] }}</p>
+              <p class="card-text">Format - {{ i['media'] }}</p>
+              <p class="card-text">Catalog # - {{ i['crateid']|upper  }}</p>
+            </div>
+          </div> 
+          <hr>
+</div>
+{% endfor %}
+
+
+{% endblock %}

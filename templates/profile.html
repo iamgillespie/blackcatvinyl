@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BCV
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid mx-auto m-2">
+
+{% for deet in usrdeets %}
+        <div class="card w-50 mx-auto">
+            <img src="static/users/{{ deet['photo'] }}" alt="{{ deet['name'] }}"  class="img-fluid mx-auto">
+            <form method="post" action="/profile" enctype="multipart/form-data">
+            <input class="display-6 w-100 text-center" id="name" name="name" type="text" placeholder="{{ deet['name']}}" style="border-style: hidden;">
+            <div class="form-group p-lg-3">
+                <label><b>Bio</b></label>
+
+                <textarea class="w-100" id="bio" name="bio" rows="6" type="text" placeholder="">{{ deet['bio']}}</textarea>
+                
+                <button class="float-end" id="editbut" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
+                </button>  
+                </form>
+              </div>
+          </div>
+
+</div>
+{% endfor %}
+
+{% endblock %}

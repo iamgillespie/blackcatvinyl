@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BCV
+{% endblock %}
+
+
+{% block main %}
+
+
+
+
+<div class="container center">
+<form action="/message" class="row g-3 middle" method="post" enctype="multipart/form-data">
+    <div>
+        <input required autocomplete="off" autofocus class="form-control" id="email" name="email" placeholder="email" type="email">
+    </div>
+    <div>
+        <input required autocomplete="off" autofocus class="form-control" id="name" name="name" placeholder="name" type="name">
+    </div>
+    <div>
+        <textarea required rows="8" class="form-control" id="message" name="message" type="text" placeholder="Do you have comments or questions? Write your message here and send it. We would love to hear from you!"></textarea>
+    </div>
+    <div>
+        <button class="btn btn-outline-dark float-end" type="submit">Send</button>
+    </div>
+    
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "adminlayout.html" %}
+
+{% block title %}
+    BCV
+{% endblock %}
+
+
+{% block main %}
+
+
+
+
+<div class="container center">
+<form action="/bcvlogin" class="row g-3 middle" method="post">
+    <div>
+        <input required autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="email" type="text">
+    </div>
+    <div>
+        <input required class="form-control" id="password" name="password" placeholder="password" type="password">
+    </div>
+    <div>
+        <button class="btn btn-outline-dark float-end" type="submit">Log In</button>
+    </div>
+    
+</form>
+</div>
+{% endblock %}
