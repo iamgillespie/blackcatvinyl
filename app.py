@@ -45,7 +45,7 @@ def login():
 
     if request.method == "POST":
         session.pop('user', None)
-        username = request.form['username']
+        username = request.form['username'].lower()
         password = request.form['password']
 
         #user validation       
@@ -99,7 +99,7 @@ def bcvlogin():
 
     if request.method == "POST":
         session.pop('user', None)
-        username = request.form['username']
+        username = request.form['username'].lower()
         password = request.form['password']
 
         #user validation       
@@ -188,7 +188,7 @@ def adminsearch():
             cursor.execute("SELECT * FROM inventory WHERE artist LIKE ? OR album LIKE ? OR description LIKE ? OR media LIKE ? OR crateid LIKE ? OR condition LIKE ?", (qry, qry, qry, qry, qry, qry,))
             qryres = cursor.fetchall()
 
-            return render_template("/cd", qryres = qryres)
+            return render_template("/adminsearch.html", qryres = qryres)
             
         #return redirect("/bcvlogin")
     else:        
@@ -359,7 +359,7 @@ def register():
     cur = con.cursor()
     usrpic = ''
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].lower()
         password = request.form['password']
         conf = request.form['conf']
         name = request.form['name']
