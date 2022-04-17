@@ -1,29 +1,23 @@
 {% extends "layout.html" %}
-
 {% block title %}
-    BCV
+BCV
 {% endblock %}
-
-
 {% block main %}
-
-
-
-
-<div class="container center">
-<form action="/login" class="row g-3 middle" method="post">
-    <div>
-        <input required autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="email" type="text">
+<div class="container form-signin text-center center-page">
+  <form action="/login" method="post">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <div class="form-floating">
+      <input required autocomplete="on" autofocus class="form-control rounded-3" id="username" name="username" placeholder="email">
+      <label for="username">Email address</label>
     </div>
-    <div>
-        <input required class="form-control" id="password" name="password" placeholder="password" type="password">
+    <div class="form-floating">
+      <input required class="form-control rounded-3" id="password" name="password" placeholder="password" type="password">
+      <label for="password">Password</label>
     </div>
-    <div>
-        <button class="btn btn-outline-dark float-end" type="submit">Log In</button>
+    <button class="w-auto btn btn-primary float-end" type="submit">Sign in</button>
+    <div class="w-auto float-start">
+      <p class="text-end"><a href="/register">register</a></p>
     </div>
-    
-</form>
-<br>
-<p style="text-align: right;"><a href="/register">new user?</a></p> 
+  </form>
 </div>
 {% endblock %}

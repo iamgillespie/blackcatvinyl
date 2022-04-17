@@ -1,27 +1,21 @@
 {% extends "adminlayout.html" %}
-
 {% block title %}
-    BCV
+BCV
 {% endblock %}
-
-
 {% block main %}
-
-
-
-
-<div class="container center">
-<form action="/bcvlogin" class="row g-3 middle" method="post">
-    <div>
-        <input required autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="email" type="text">
+<div class="container form-signin text-center center-page">
+  <form action="/bcvlogin" method="post">
+    <img class="mb-4" src="static/imgs/BCVlogo.png" alt="BCV logo" width="200">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <div class="form-floating">
+      <input required autocomplete="on" autofocus class="form-control rounded-3" id="username" name="username" placeholder="email">
+      <label for="username">Email address</label>
     </div>
-    <div>
-        <input required class="form-control" id="password" name="password" placeholder="password" type="password">
+    <div class="form-floating">
+      <input required class="form-control rounded-3" id="password" name="password" placeholder="password" type="password">
+      <label for="password">Password</label>
     </div>
-    <div>
-        <button class="btn btn-outline-dark float-end" type="submit">Log In</button>
-    </div>
-    
-</form>
+    <button class="w-auto btn btn-primary float-end" type="submit">Sign in</button>
+  </form>
 </div>
 {% endblock %}

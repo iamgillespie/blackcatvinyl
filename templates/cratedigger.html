@@ -1,64 +1,49 @@
 {% extends "adminlayout.html" %} {% block title %} BCV {% endblock %} {% block main %}
-
 <h6 class="display-6">Here are your most recent additions...</h6>
-
 <table class="table table-responsive w-100 table-hover">
-<tr>
-{% for row in rows %}
-        
-
-<form method="post" action="/cratedigger" enctype="multipart/form-data">
-<td class="w-auto  align-middle">
-    <div class="me-auto">
-<img src="static/files/{{ row['crateid'] }}.jpg" width="300px" alt="{{ row['album'] }}" />
+  <tr>
+    {% for row in rows %}
+    <form method="post" action="/cratedigger" enctype="multipart/form-data">
+      <td class="w-auto  align-middle">
+        <div class="me-auto">
+          <img src="static/files/{{ row['crateid'] }}.jpg" width="300px" alt="{{ row['album'] }}" />
+        </div>
+      </td>
+      <td class="w-25  align-middle">
+        <p class="mx-auto w-100 text-start">
+          {{ row['artist'] }}
+        </p>
+        <p class="mx-auto w-100 text-start">
+          {{ row['album'] }}
+        </p>
+        <p class="w-100 text-start">
+          ${{ row['price'] }}
+        </p>
+        <p class="mx-auto w-100 text-start">
+          {{ row['condition'] }}
+        </p>
+        <p class="mx-auto w-100 text-start">{{ row['media'] }}</p>
+        <p class="mx-auto w-100 text-start">
+          Catalog # {{ row['catalogid']|upper }}
+        </p>
+        <p>BCV # {{ row['crateid']|upper }}</p>
+    <form method="POST" action="/delete" enctype="multipart/form-data">
+    <div class="container justify-content-between">
+    <input class="form-check-input p-1.5 align-bottom" type="checkbox" value="" id="validation" required>
+    <button class="btn btn-sm btn-outline-danger float-end" id="delete" name="delete" type="submit">delete</button>
+    <input hidden class="form-control" value="{{ row['crateid']}}" id="deleteid" name="deleteid" type="text">
     </div>
-</td>
-<td class="w-25  align-middle">
-<p class="mx-auto w-100 text-start">
-{{ row['artist'] }}
-</p>
-
-<p class="mx-auto w-100 text-start">
-{{ row['album'] }}
-</p>
-
-<p class="w-100 text-start">
-    ${{ row['price'] }}
-</p>
-
-<p class="mx-auto w-100 text-start">
-{{ row['condition'] }}
-</p>
-
-
-<p class="mx-auto w-100 text-start">{{ row['media'] }}</p>
-
-
-<p>item # {{ row['crateid']}}</p> 
-
-<form method="POST" action="/delete" enctype="multipart/form-data">
-<div class="container justify-content-between">
-<input class="form-check-input p-1.5 align-bottom" type="checkbox" value="" id="validation" required>
-<button class="btn btn-sm btn-outline-danger float-end" id="delete" name="delete" type="submit">delete</button>
-<input hidden class="form-control" value="{{ row['crateid']}}" id="deleteid" name="deleteid" type="text">
-</div>
-</form>
-
-</td>
-
-<td class="w-100 align-middle">
-<div class="hide">
-<h6 class="mx-auto w-100 text-start"> 
-    {{ row['description'] }}
-</h6>
-</div>
-  
-</td>
-</form>
-</tr>
-    
-{% endfor %}
-
+    </form>
+    </td>
+    <td class="w-100 align-middle">
+      <div class="hide">
+        <h6 class="mx-auto w-100 text-start"> 
+          {{ row['description'] }}
+        </h6>
+      </div>
+    </td>
+    </form>
+  </tr>
+  {% endfor %}
 </table>
-
 {% endblock %}

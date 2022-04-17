@@ -1,187 +1,173 @@
 body {
-    background-color: #ffffff;
-    color: #000000;
-    margin-bottom: 300px;
-}
-#lyrics {
+  background-color: #ffffff;
+  color:#1b1b1b;
+  margin-bottom: 300px;
+  }
+  nav {
+  backdrop-filter: blur(7px);
+  background-color: #ffffff93;
+  box-shadow: 0 0 1px 1px #ffffff93;
+  }
+  #lyrics {
   text-align: center;
   font-weight: lighter; 
-}
-a {
-  text-decoration: none;
-  color: #fdffbb;
-}
-
-#nbconts {
-
+  }
+  a {
+  text-decoration: none;`
+  }
+  a:hover {
+  color: #212529;
+  opacity: .6;
+  }
+  #nbconts {
   margin-top: 30px;
   margin-bottom: 30px;
-}
-
-/* avatar menu drop up */
-.avatar {
+  }
+  /* avatar menu drop up */
+  .avatar {
   vertical-align: middle;
-  width: 70px;
-  height: 70px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   object-fit: cover;
-  padding: 5px;
   box-shadow: 0px 0px 0px 3px #ffffff88;
-}
-.avatar:hover {
+  }
+  .avatar:hover {
   box-shadow: 0px 0px 1px 3px #ffffff;
-}
-
-.dropbtn {
-  padding: 0px;
-  font-size: 24px;
-  border: none;
-  background-color: #00000000;
-}
-.profmen {
-
-  position:fixed;                 
-  bottom:0;                         
-  left:0;
-  padding-bottom: 25px;
-  padding-left: 25px;
-}
-
-.dropup {
-  position: relative;
-  display: inline-block;
-}
-.dropup-content {
-  display: none;
-  position: absolute;
-  background-color: #0e0e0ec7;
-  min-width: 200px;
-  bottom: 70px;
-  z-index: 1;
-  text-align: center;
-}
-
-.dropup-content a {
-  color: #ffffff;
-  padding: 18px 10px;
-  text-decoration: none;
-  display: block;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.dropup-content a:hover {background-color: rgb(43, 43, 43)}
-
-.dropup:hover .dropup-content {
-  display: block;
-}
-
-
-/* BCV search title*/
-.bcvtitle {
-    color: #212529;
-    padding-left: 72px;
-    padding-right: 72px;
-}
-
-.middle {
-    vertical-align: middle;
-}
-
-/*crate digger entry form...*/
-#cratedigger {
-margin-left: 50px;
-margin-right: 50px;
-}
-
-/* center text on all input fields and manage width*/
-input{
-    text-align:center;
- }
- select{
-  text-align:center;
-}
-.center {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
   }
 
-/*flash alert for Flask */
-.alert {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: #fdff835e;
-    text-align: center;
-    font-size: small;
-    font-weight: bolder;
-    opacity: .8;
-}
-
-div.row {
+  /* BCV search title*/
+  .bcvtitle {
+  color: #212529;
+  padding-left: 24px;
+  padding-right: 24px;
+  }
+  .middle {
+  vertical-align: middle;
+  }
+  /*crate digger entry form...*/
+  #cratedigger {
+  margin-left: 50px;
+  margin-right: 50px;
+  }
+  .center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  }
+  .center-page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+  /*flash alert for Flask */
+  .alert {
   margin-top: 20px;
   margin-bottom: 20px;
-}
-
-
-/* attributes for the dig container*/
-#crateimage {
-    opacity: 1;
-}
-#crateimage:hover {
-    opacity: .5;
-}
-#digcontainer {
+  background-color: #fdff835e;
+  text-align: center;
+  font-size: small;
+  font-weight: bolder;
+  opacity: .8;
+  }
+  div.row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  }
+  /* attributes for the dig container*/
+  #crateimage {
+  opacity: 1;
+  }
+  #crateimage:hover {
+  opacity: .5;
+  }
+  #digcontainer {
   margin: auto;
   width: 100%;
   background-color: #1b1b1b;
-  padding: 50px;
   align-content: center;
-}
-#digs {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  }
+  #digs {
   margin: auto;
-  width: 50%;
+  width: 75%;
   background-color: #ffffff;
   opacity: .9;
   align-content: center;
-  padding: 5px;
+  padding: 10px;
   border: 15px black;
-}
-#digs:hover {
-  margin: auto;
-  width: 50%;
-  background-color: #ffffff;
+  }
+  #digs:hover {
   opacity: 1;
-  align-content: center;
-  border: 15px black;
-}
-
-textarea {
+  }
+  img.card-img-top {
+    filter: blur(1px);
+    filter: sepia(30%);
+    filter: hue-rotate(20deg);
+  }
+  img.card-img-top:hover {
+    filter: blur(0px);
+    filter: sepia(0);
+    filter: hue-rotate(0deg);
+  }
+  textarea {
   border: none;
   outline: none;
-}
-
-#editbut {
+  }
+  #editbut {
   background-color: #00000000;
   border: none;
   color: currentColor;
   opacity: .7;
   text-align: center;
   text-decoration: none;
-}
-#editbut:hover {
+  }
+  #editbut:hover {
   opacity: 1;
-}
-#kitty {
+  }
+  #kitty {
   opacity: .8;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-#kitty:hover {
-  opacity: 1;
-}
-
-@media screen and (max-width: 800px) {
-  div.hide {
-    display: none;
   }
-}
+  #kitty:hover {
+  opacity: 1;
+  }
+  @media (max-width:629px) {
+  #mobilehide {
+  display: none;
+  }
+  }
+  /* bootstrap sign in forms*/
+  .form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  }
+  .form-signin .checkbox {
+  font-weight: 400;
+  }
+  .form-signin .form-floating:focus-within {
+  z-index: 2;
+  }
+  .form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  }
+  #searchbar {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  opacity: .7;
+  }
+  #searchbar:hover {
+  opacity: 1;
+  }

@@ -74,7 +74,7 @@ def login():
             return render_template('login.html')
         else:
             session['user'] = username
-            return redirect('/profile')
+            return redirect('/')
 
     # make sure a long-in template is generated    
     else:
@@ -142,7 +142,7 @@ def index():
     con = sql.connect('bcv.db')
     con.row_factory = sql.Row  
     cursor = con.cursor()
-    cursor.execute("SELECT * FROM inventory ORDER BY RANDOM() LIMIT 5")
+    cursor.execute("SELECT * FROM inventory ORDER BY RANDOM() LIMIT 15")
     rnddig = cursor.fetchall()
     # profile picture
     usrpic = '' 
@@ -158,7 +158,7 @@ def index():
         cursor.execute("SELECT * FROM inventory WHERE artist LIKE ? OR album LIKE ? OR description LIKE ? OR media LIKE ? OR crateid LIKE ? OR condition LIKE ?", (qry, qry, qry, qry, qry, qry,))
         qryres = cursor.fetchall()
         
-        return render_template("/search.html", usrpic = usrpic, rnddig = rnddig, qryres = qryres)
+        return render_template("/index.html", usrpic = usrpic, rnddig = rnddig, qryres = qryres)
             
     return render_template("/index.html", usrpic = usrpic, rnddig = rnddig)
 
@@ -267,6 +267,7 @@ def crateadd():
             #text entries
             artist = request.form['artist']
             album = request.form['album']
+            catalogid = request.form['catalogid'].lower()
             price = request.form['price']
             condition = request.form['condition']
             medium = request.form['medium']
@@ -280,7 +281,7 @@ def crateadd():
             #saving to UPLOAD_FOLDER as defined at the top of app 
             coverimg.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(crateid + '.jpg')))
 
-            con.execute('INSERT INTO inventory (artist, album, description, price, condition, media, crateid) VALUES (?, ?, ?, ?, ?, ?, ?)', (artist, album, description, price, condition, medium, crateid))
+            con.execute('INSERT INTO inventory (artist, album, description, price, condition, media, crateid, catalogid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (artist, album, description, price, condition, medium, crateid, catalogid))
             con.commit()
 
             deetlist = cursor.execute("SELECT crateid FROM inventory WHERE crateid = ?", (crateid,))
@@ -333,7 +334,9 @@ def cratedigger():
             #text entries
             deleteid = request.form['deleteid']
             #remove image file
-            os.remove('static/files/' + str(deleteid) + '.jpg')
+            ### USE ABSOLUTE PATH WHEN ON HOST SERVER
+            os.remove('/home/blackcatvinyl/mysite/static/files/' + str(deleteid) + '.jpg') # ABSOLUTE PATH
+            #os.remove('static/files/' + str(deleteid) + '.jpg') # RELATIVE PATH
             # delete record
             con.execute('DELETE FROM inventory WHERE crateid = ?', (deleteid,))
             # refresh query before rendering template
@@ -357,7 +360,7 @@ def register():
     con = sql.connect('bcv.db')
     con.row_factory = sql.Row  
     cur = con.cursor()
-    usrpic = ''
+    usrpic = 'BCVlogo.png'
     if request.method == 'POST':
         username = request.form['username'].lower()
         password = request.form['password']
@@ -473,15 +476,16 @@ def message():
         name = request.form['name']
         message = request.form['message']
         registration = g.user
-
         #timestamp for message tracking.
         time = datetime.datetime.now()
 
         con.execute('INSERT INTO messages (email, name, message, registration, time) VALUES (?, ?, ?, ?, ?)', (email, name, message, registration, time,))
         con.commit()
+        cursor.execute("SELECT * FROM inventory ORDER BY RANDOM() LIMIT 5")
+        rnddig = cursor.fetchall()
         con.close()
         flash('Thanks for dropping us a note!')
-        return render_template("index.html", usrpic = usrpic)
+        return render_template("index.html", usrpic = usrpic, rnddig = rnddig)
 
     else:
         return render_template("msg.html", usrpic = usrpic)
@@ -541,7 +545,7 @@ def info():
         cursor.execute("SELECT photo FROM users WHERE user = ?", (g.user,))
         usrpic = cursor.fetchall()
 
-    cursor.execute("SELECT * FROM info")
+    cursor.execute("SELECT * FROM info ORDER BY date DESC")
     news = cursor.fetchall()    
 
     return render_template("/info.html", news = news)

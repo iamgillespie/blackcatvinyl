@@ -1,22 +1,17 @@
 {% extends "adminlayout.html" %} {% block title %} BCV {% endblock %} {% block main %}
-
-    
-
-<h6 class="display-6" style="text-align: center;">BCV | Publisher</h6>
-<div class="container center">
-    <form action="/postinfo" class="row g-3 middle" method="post">
-        <div>
-            <input required autocomplete="off" autofocus class="form-control" id="title" name="title" placeholder="title" type="text">
-        </div>
-        <div>
-            <textarea required rows="8" class="form-control" id="post" name="post" placeholder="Tell everyone what you want them to know about...." type="text"></textarea>
-        </div>
-        <div>
-            <button class="btn btn-outline-dark float-end" type="submit">Post</button>
-        </div>
-        
-    </form>
-
+<div class="container col-md-7 col-lg-8 center-page">
+  <h6 class="display-6 text-center">BCV | Publisher</h6>
+  <form action="/postinfo" class="row g-3 middle" method="post">
+    <div>
+      <input required autocomplete="off" autofocus class="form-control" id="title" name="title" placeholder="title" type="text">
     </div>
-
+    <div>
+      <textarea required rows="8" class="form-control" id="post" name="post" placeholder="Enter news and info here that you would like to communicate to your patrons to be displayed on the news feed." type="text"></textarea>
+    </div>
+    <div>
+      <button class="btn btn-outline-dark float-end" type="submit">Post</button>
+    </div>
+  </form>
+</div>
+</div>
 {% endblock %}

@@ -1,32 +1,24 @@
 {% extends "layout.html" %}
-
 {% block title %}
-    BCV
+BCV
 {% endblock %}
-
-
 {% block main %}
-{% for i in news %}
-
-<div class="container mt-lg-5">
-  <div class="row mx-auto p-0">
-
-<div class="col">
-  <img src="static/users/{{ i['photo'] }}" class="avatar">
-</div>    
-
-<div class="col text-end">
-  <h4>{{ i['date'] }}</h4>
-</div>
-
-</div>
-  <div class="mt-sm-2 p-1 bg-light text-dark">
-    <h1>{{ i['title'] }}</h1> 
-    <p>{{ i['post'] }}</p> 
-    <p class="text-end"> - {{ i['name'] }}</p>
-    
+<div class="container-fluid center w-auto">
+  {% for i in news %}
+  <div class="container mt-3">
+    <div class="mt-4 p-5 bg-dark text-light rounded-end">
+      <h4 class="display-6 text-center">{{ i['title'] }}</h4>
+      <h5>{{ i['date'] }}</h5>
+      <br>
+      <p><i>{{ i['post'] }}</i></p>
+      <br>        
+      <div class="col">
+        <img src="static/users/{{ i['photo'] }}" class="avatar">
+      </div>
+      <p class="text-end">- {{ i ['name'] }}</a></p>
+    </div>
   </div>
+  <br>
+  {% endfor %}
 </div>
-
-{% endfor %}
 {% endblock %}

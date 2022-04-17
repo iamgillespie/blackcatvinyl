@@ -1,57 +1,31 @@
 {% extends "layout.html" %}
-
 {% block title %}
-    BCV
+BCV
 {% endblock %}
-
 {% block main %}
-
 <div class="container center">
-
-    <h6 class="display-6" style="text-align: center;">Register your account</h6>
-
-<form method="post" class="row g-3 middle" enctype="multipart/form-data">
+  <h6 class="display-6" style="text-align: center;">Register your account</h6>
+  <form method="post" class="row g-3 middle" enctype="multipart/form-data">
     <div>
-    <input type="text" autocomplete="off" name="username" class="form-control" placeholder="email" value="{{ request.form['username'] }}"></input>
+      <input type="text" autocomplete="off" name="username" class="form-control" placeholder="email" value="{{ request.form['username'] }}"></input>
     </div>
-
     <div>
-    <input type="password" autocomplete="off" name="password" class="form-control" placeholder="password" value="{{ request.form['password'] }}"></input>
+      <input type="password" autocomplete="off" name="password" class="form-control" placeholder="password" value="{{ request.form['password'] }}"></input>
     </div>
-    
     <div>
-    <input type="password" autocomplete="off" name="conf" class="form-control" placeholder="confirm password" value="{{ request.form['conf'] }}"></input>
+      <input type="password" autocomplete="off" name="conf" class="form-control" placeholder="confirm password" value="{{ request.form['conf'] }}"></input>
     </div>
-
     <div>
-    <input type="text" autocomplete="off" name="name" class="form-control" placeholder="what's your name?" value="{{ request.form['name'] }}"></input>
+      <input type="text" autocomplete="off" name="name" class="form-control" placeholder="what's your name?" value="{{ request.form['name'] }}"></input>
     </div>
-    
     <div>
-        <p style="text-align: center;">Add a profile picture</p>
-        <input type="file" class="form-control" id="photo" name="photo" aria-describedby="photo" aria-label="photo">
+      <p style="text-align: center;">Add a profile picture</p>
+      <input required type="file" class="form-control" id="photo" name="photo" aria-describedby="photo" aria-label="photo">
     </div>
-
     <div>
-        <button type="submit" class="btn btn-outline-dark float-end">Register</button>
-    </div> 
-    <p style="text-align: right;"><a href="/login">existing user?</a></p> 
-</form>
+      <button type="submit" class="btn btn-outline-dark float-end">Register</button>
+    </div>
+    <p style="text-align: right;"><a href="/login">existing user?</a></p>
+  </form>
 </div>
-
-<!--
-<div class="container">
-    <form action="/register" method="post">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Re-type Password" type="password">
-        </div>
-        <button class="btn btn-primary" type="submit">Create</button>
-    </form>
--->
 {% endblock %}

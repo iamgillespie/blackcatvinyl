@@ -1,37 +1,33 @@
 {% extends "layout.html" %}
-
 {% block title %}
-    BCV
+BCV
 {% endblock %}
-
 {% block main %}
-
-<!--
-<div class="searchbar">
+<div id="searchbar">
   <div class="container w-50">
-     <form class="d-flex" method="POST" enctype="multipart/form-data" action="/">
-        <input id="qry" name="qry" autofocus autocomplete class="form-control-lg mx-auto w-100" type="text" placeholder="dig our crates..." aria-label="Search" /></input>
-
-        <button hidden class="btn btn-outline-dark" type="submit">search</button>
-     </form>
+    <form class="d-flex" method="POST" enctype="multipart/form-data" action="/">
+      <input id="qry" name="qry" autofocus autocomplete class="form-control-lg mx-auto w-100" type="text" placeholder="dig our crates..." aria-label="Search" /></input>
+      <button hidden class="btn btn-outline-dark" type="submit">search</button>
+    </form>
   </div>
 </div>
--->
 <div id="digcontainer">
-{% for dig in rnddig %}
-<div class="row">
-            <div id='digs' class="card" style="width:600px">
-            <img class="card-img-top" src="static/files/{{ dig['crateid'] }}.jpg" alt="random dig">
-            <div class="card-body">
-              <h4 class="card-title display-4">Album - {{ dig['album']}}</h4>
-              <h6 class="card-title display-6">Artist - {{ dig['artist']}}</h6>
-              <p class="card-text">About - {{ dig['description'] }}</p>
-              
-            </div>
-          </div> 
+  {% for dig in rnddig %}
+  <div class="row w-auto">
+    <div id='digs' class="card">
+      <img class="card-img-top rounded-3 img-fluid w-75 mx-auto p-lg-5" src="static/files/{{ dig['crateid'] }}.jpg" alt="random dig">
+      <div class="card-body">
+        <h4 class="card-title display-4">{{ dig['artist']}}</h4>
+        <h6 class="card-title display-6">{{ dig['album']}}</h6>
+        <br>
+        <p class="card-text"><i>About - </i></p>
+        <p class="card-text">{{ dig['description'] }}</p>
+        <br>
+        <p class="card-text text-end">Catalog # {{ dig['catalogid']|upper }}</p>
+        <p class="card-text text-end">BCV # {{ dig['crateid']|upper }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}
-</div>
-
-
 {% endblock %}
