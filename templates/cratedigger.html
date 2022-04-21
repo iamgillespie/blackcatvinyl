@@ -3,7 +3,7 @@
 <table class="table table-responsive w-100 table-hover">
   <tr>
     {% for row in rows %}
-    <form method="post" action="/cratedigger" enctype="multipart/form-data">
+
       <td class="w-auto  align-middle">
         <div class="me-auto">
           <img src="static/files/{{ row['crateid'] }}.jpg" width="300px" alt="{{ row['album'] }}" />
@@ -27,7 +27,7 @@
           Catalog # {{ row['catalogid']|upper }}
         </p>
         <p>BCV # {{ row['crateid']|upper }}</p>
-    <form method="POST" action="/delete" enctype="multipart/form-data">
+    <form method="POST" action="/cratedigger" enctype="multipart/form-data">
     <div class="container justify-content-between">
     <input class="form-check-input p-1.5 align-bottom" type="checkbox" value="" id="validation" required>
     <button class="btn btn-sm btn-outline-danger float-end" id="delete" name="delete" type="submit">delete</button>

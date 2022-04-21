@@ -5,7 +5,7 @@ BCV
 {% block main %}
 <div id="searchbar">
   <div class="container w-50">
-    <form class="d-flex" method="POST" enctype="multipart/form-data" action="/">
+    <form class="d-flex" method="POST" enctype="multipart/form-data" action="/search" required>
       <input id="qry" name="qry" autofocus autocomplete class="form-control-lg mx-auto w-100" type="text" placeholder="dig our crates..." aria-label="Search" /></input>
       <button hidden class="btn btn-outline-dark" type="submit">search</button>
     </form>

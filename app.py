@@ -24,11 +24,23 @@ app.config['UPLOAD_FOLDER'] = 'static/files'
 app.config['USR_FOLDER'] = 'static/users'
 Session(app)
 
+
+@app.template_filter()
+def currencyFormat(value):
+    value = float(value)
+    return "${:,.2f}".format(value)
+
 @app.before_request
 def before_request():
+    con = sql.connect('bcv.db')
+    con.row_factory = sql.Row  
+    cursor = con.cursor()
     g.user = None
     if 'user' in session:
         g.user = session['user']
+        cursor.execute("SELECT photo FROM users WHERE user = ?", (g.user,))
+        usrpic = cursor.fetchall()
+        print(usrpic)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -129,7 +141,7 @@ def bcvlogin():
             return render_template('bcvlogin.html')
         else:
             session['user'] = username
-            return redirect('/publish')
+            return redirect('/inventory')
 
     # make sure a long-in template is generated    
     else:
@@ -162,6 +174,99 @@ def index():
             
     return render_template("/index.html", usrpic = usrpic, rnddig = rnddig)
 
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    
+    # connection
+    con = sql.connect('bcv.db')
+    con.row_factory = sql.Row  
+    cursor = con.cursor()
+    cursor.execute("SELECT * FROM inventory ORDER BY RANDOM() LIMIT 15")
+    rnddig = cursor.fetchall()
+    # profile picture
+    usrpic = '' 
+    if g.user:
+        cursor.execute("SELECT photo FROM users WHERE user = ?", (g.user,))
+        usrpic = cursor.fetchall()
+
+    if request.method == 'POST':
+        qry = request.form['qry']
+        qry = qry.replace(' ', '%')
+        qry = ('%' + qry + '%')
+
+        cursor.execute("SELECT * FROM inventory WHERE artist LIKE ? OR album LIKE ? OR description LIKE ? OR media LIKE ? OR crateid LIKE ? OR condition LIKE ?", (qry, qry, qry, qry, qry, qry,))
+        qryres = cursor.fetchall()
+        for i in qryres:
+            print(i)
+        
+        return render_template("/index.html", usrpic = usrpic, rnddig = qryres)
+            
+    return render_template("/index.html", usrpic = usrpic, rnddig = rnddig)
+
+@app.route("/inventory", methods=['GET', 'POST'])
+def inventory():
+    # connection
+    con = sql.connect('bcv.db')
+    con.row_factory = sql.Row  
+    cursor = con.cursor()
+
+    # profile pic attributes
+    usrpic = ''
+
+    #check that session is set
+    if g.user:
+        # connection
+        con = sql.connect('bcv.db')
+        con.row_factory = sql.Row  
+        cursor = con.cursor()
+        if g.user:
+            # CHECKPOINT FOR PRIVLEGES
+            cursor.execute("SELECT * FROM users WHERE priv = 1 AND user = ?", (g.user,))
+            chpnt = cursor.fetchall()
+            if chpnt == []:
+                flash("You're not supposed to be here buddy. :)")
+                flash('If you think this was a mistake, please get in touch with your administrator.')
+                return render_template("index.html")
+
+        cursor.execute("SELECT * FROM inventory ORDER BY artist ASC")
+        rows = cursor.fetchall()
+        # profile picture
+        cursor.execute("SELECT photo FROM users WHERE user = ?", (g.user,))
+        usrpic = cursor.fetchall()
+        cursor.execute('SELECT COUNT(*) FROM inventory')
+        totalinv = cursor.fetchall()
+        for i in totalinv:
+            totalinv = (i[0])
+
+        cursor.execute('SELECT SUM(price) FROM inventory')
+        value = cursor.fetchall()
+        for j in value:
+            value = (j[0])
+
+        if request.method == "POST":
+            #text entries
+            deleteid = request.form['deleteid']
+            #remove image file
+            ### USE ABSOLUTE PATH WHEN ON HOST SERVER
+            #os.remove('/home/blackcatvinyl/mysite/static/files/' + str(deleteid) + '.jpg')
+            os.remove('static/files/' + str(deleteid) + '.jpg')
+            # delete record
+            con.execute('DELETE FROM inventory WHERE crateid = ?', (deleteid,))
+            # refresh query before rendering template
+            rows = cursor.fetchall()
+            cursor.execute("SELECT * FROM inventory ORDER BY item DESC")
+            rows = cursor.fetchall()
+            con.commit()
+            con.close()
+
+            flash('item has been removed...')
+            return render_template("inventory.html", rows = rows)
+     
+        #return redirect(url_for('cratedigger'))
+        return render_template("inventory.html", rows = rows, totalinv = totalinv, value = value)
+    else:
+        return render_template("bcvlogin.html")
+
 @app.route("/adminsearch", methods=['GET', 'POST'])
 def adminsearch():
     
@@ -190,7 +295,6 @@ def adminsearch():
 
             return render_template("/adminsearch.html", qryres = qryres)
             
-        #return redirect("/bcvlogin")
     else:        
         flash('login required')
         return render_template("/bcvlogin.html")
@@ -335,8 +439,8 @@ def cratedigger():
             deleteid = request.form['deleteid']
             #remove image file
             ### USE ABSOLUTE PATH WHEN ON HOST SERVER
-            os.remove('/home/blackcatvinyl/mysite/static/files/' + str(deleteid) + '.jpg') # ABSOLUTE PATH
-            #os.remove('static/files/' + str(deleteid) + '.jpg') # RELATIVE PATH
+            #os.remove('/home/blackcatvinyl/mysite/static/files/' + str(deleteid) + '.jpg')
+            os.remove('static/files/' + str(deleteid) + '.jpg')
             # delete record
             con.execute('DELETE FROM inventory WHERE crateid = ?', (deleteid,))
             # refresh query before rendering template
@@ -442,7 +546,7 @@ def lyrics():
             lyrics = request.form['lyrics']
             con.execute('INSERT INTO lyrics (lyric, user) VALUES (?, ?)', (lyrics, g.user))
             con.commit() 
-
+            return render_template("lyrics.html", usrdeets = usrdeets, usrpic = usrpic, user = g.user, rndlyr = rndlyr)
         return render_template("lyrics.html", usrdeets = usrdeets, usrpic = usrpic, user = g.user, rndlyr = rndlyr)
     else:
         flash('login required')
@@ -548,7 +652,7 @@ def info():
     cursor.execute("SELECT * FROM info ORDER BY date DESC")
     news = cursor.fetchall()    
 
-    return render_template("/info.html", news = news)
+    return render_template("/info.html", news = news, usrpic = usrpic)
 
 @app.route("/post")
 @app.route("/blog")

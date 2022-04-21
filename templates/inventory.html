@@ -1,0 +1,72 @@
+{% extends "adminlayout.html" %} {% block title %} BCV {% endblock %} {% block main %}
+<h6 class="display-6 text-center">Inventory</h6>
+<p class="text-center">You have {{ totalinv }} in your inventory valued at a total of {{ value | currencyFormat }}</p>
+<table class="table table-responsive w-100 table-hover">
+<thead class="text-center">
+    <th>
+        Artwork
+    </th>
+    <th>
+        Artist
+    </th>
+    <th>
+        Album
+    </th>
+    <th>
+        Condition
+    </th>
+    <th>
+        Format
+    </th>
+    <th>
+        Crate #
+    </th>
+    <th>
+        Catalog #
+    </th>
+    <th class="text-success">
+        Price
+    </th>
+    <th class="text-warning">
+        Remove
+    </th>
+</thead>
+{% for i in rows %}
+<tr class="text-center align-middle">
+    <td>
+        <img src="static/files/{{ i['crateid'] }}.jpg" width="48px">
+    </td>
+    <td>
+        {{ i['artist'] }}
+    </td>
+    <td>
+        {{ i['album'] }}
+    </td>
+    <td>
+        {{ i['condition'] }}
+    </td>
+    <td>
+        {{ i['media'] }}
+    </td>
+    <td>
+        {{ i['crateid']|upper }}
+    </td>
+    <td>
+        {{ i['catalogid']|upper }}
+    </td>
+    <th class="text-success">
+        ${{ i['price'] }}
+    </th>
+    <td>
+        <form method="POST" action="/inventory" enctype="multipart/form-data">
+        <div class="container justify-content-between">
+        <input class="form-check-input p-1.5 align-bottom" type="checkbox" value="" id="validation" required>
+        <button class="btn btn-sm btn-outline-danger float-end" id="delete" name="delete" type="submit">delete</button>
+        <input hidden class="form-control" value="{{ i['crateid']}}" id="deleteid" name="deleteid" type="text">
+        </div>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

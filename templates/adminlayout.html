@@ -17,14 +17,14 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/publish">BCV|admin</a>
+        <a class="navbar-brand" href="/inventory">BCV|admin</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navlinks" aria-controls="navlinks" aria-expanded="false" aria-label="Toggle navigation">
         <span><img src="/static/imgs/bcvlogo.png" width="48px"></span>
         </button>
         <div class="collapse navbar-collapse" id="navlinks">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/" target="_blank">Home</a>
+              <a class="nav-link" href="/publish">Publish</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/inbox">Inbox</a>
@@ -32,7 +32,7 @@
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Crate Digger 3000
+                Crate Digger
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="/add">Add records</a></li>
@@ -42,7 +42,7 @@
             </ul>
           </ul>
           <form class="d-flex" method="POST" enctype="multipart/form-data" action="/adminsearch">
-            <input class="form-control me-2" type="text" placeholder="enter serial" id="qry" name="qry" aria-label="Search" autofocus required autocomplete> 
+            <input class="form-control me-2" type="text" placeholder="dig crates..." id="qry" name="qry" aria-label="Search" autofocus required autocomplete> 
             <button class="btn btn-outline-light btn-dark" type="submit">Search</button>
           </form>
           <span class="navbar-text">

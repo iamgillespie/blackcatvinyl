@@ -1,173 +1,238 @@
 body {
-  background-color: #ffffff;
-  color:#1b1b1b;
-  margin-bottom: 300px;
-  }
-  nav {
-  backdrop-filter: blur(7px);
-  background-color: #ffffff93;
-  box-shadow: 0 0 1px 1px #ffffff93;
-  }
-  #lyrics {
-  text-align: center;
-  font-weight: lighter; 
-  }
-  a {
-  text-decoration: none;`
-  }
-  a:hover {
-  color: #212529;
-  opacity: .6;
-  }
-  #nbconts {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  }
-  /* avatar menu drop up */
-  .avatar {
-  vertical-align: middle;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0px 0px 0px 3px #ffffff88;
-  }
-  .avatar:hover {
-  box-shadow: 0px 0px 1px 3px #ffffff;
-  }
+background-color: #ffffff;
+color:#1b1b1b;
+margin-bottom: 300px;
+position: relative;
+min-height: 100vh;
+}
 
-  /* BCV search title*/
+/* create padding for the footer*/
+.content-wrap {
+padding-bottom: 2.5rem;
+} 
+
+footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 2.5rem;
+background-color: #ffffff93;
+margin-top: 500px;
+font-size: x-small;
+}
+
+#kc {
+  transition: filter 2s, color 1s;
+  color: #d8de1c;
+}
+#kc:hover {
+filter: opacity(.1);
+color: black;
+}
+
+svg {
+transition: color 2s, padding 500ms, transform 300ms;
+width: 52px;
+padding: 10px;
+fill: currentColor;
+}
+
+svg:hover {
+transform: rotate(180deg);
+padding: 0px;
+color: rgb(220, 217, 20);
+}
+
+/* avatar menu drop up */
+.avatar {
+vertical-align: middle;
+width: 52px;
+height: 52px;
+padding: 8px;
+border-radius: 50%;
+object-fit: cover;
+box-shadow: 0px 0px 0px 2px #ffffff00;
+transition: transform 600ms, padding 500ms, filter 1s, box-shadow 2s;
+}
+.avatar:hover {
+  transform: rotate(360deg);
+  filter: brightness(1.2);
+  padding: 0px;
+  box-shadow: 0px 0px 0px 2px #d8de1c;
+}
+
+nav {
+backdrop-filter: blur(7px);
+background-color: #ffffff93;
+box-shadow: 0 0 5px 2px #ffffff93;
+}
+
+#lyrics {
+text-align: center;
+font-weight: lighter; 
+}
+a {
+text-decoration: none;
+}
+a:hover {
+color: #70743da9;
+}
+
+/* BCV search title*/
+.bcvtitle {
+color: #212529;
+padding-top: 56px;
+padding-bottom: 56px;
+padding-left: 24px;
+padding-right: 24px;
+transition: filter 1s;
+}
+.bcvtitle:hover {
+filter: opacity(.5);
+}
+
+@media (max-width: 600px) {
+
   .bcvtitle {
-  color: #212529;
-  padding-left: 24px;
-  padding-right: 24px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
-  .middle {
-  vertical-align: middle;
+  
+}
+@media (max-height: 600px) {
+
+  .bcvtitle {
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
-  /*crate digger entry form...*/
-  #cratedigger {
-  margin-left: 50px;
-  margin-right: 50px;
-  }
-  .center {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  }
-  .center-page {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  }
-  /*flash alert for Flask */
-  .alert {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: #fdff835e;
-  text-align: center;
-  font-size: small;
-  font-weight: bolder;
-  opacity: .8;
-  }
-  div.row {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  }
-  /* attributes for the dig container*/
-  #crateimage {
-  opacity: 1;
-  }
-  #crateimage:hover {
-  opacity: .5;
-  }
-  #digcontainer {
-  margin: auto;
-  width: 100%;
-  background-color: #1b1b1b;
-  align-content: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  }
-  #digs {
-  margin: auto;
-  width: 75%;
-  background-color: #ffffff;
-  opacity: .9;
-  align-content: center;
-  padding: 10px;
-  border: 15px black;
-  }
-  #digs:hover {
-  opacity: 1;
-  }
-  img.card-img-top {
-    filter: blur(1px);
-    filter: sepia(30%);
-    filter: hue-rotate(20deg);
-  }
-  img.card-img-top:hover {
-    filter: blur(0px);
-    filter: sepia(0);
-    filter: hue-rotate(0deg);
-  }
-  textarea {
-  border: none;
-  outline: none;
-  }
-  #editbut {
-  background-color: #00000000;
-  border: none;
-  color: currentColor;
-  opacity: .7;
-  text-align: center;
-  text-decoration: none;
-  }
-  #editbut:hover {
-  opacity: 1;
-  }
-  #kitty {
-  opacity: .8;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  }
-  #kitty:hover {
-  opacity: 1;
-  }
-  @media (max-width:629px) {
-  #mobilehide {
-  display: none;
-  }
-  }
-  /* bootstrap sign in forms*/
-  .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-  }
-  .form-signin .checkbox {
-  font-weight: 400;
-  }
-  .form-signin .form-floating:focus-within {
-  z-index: 2;
-  }
-  .form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  }
-  .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  }
-  #searchbar {
-  margin-top: 100px;
-  margin-bottom: 100px;
-  opacity: .7;
-  }
-  #searchbar:hover {
-  opacity: 1;
-  }
+  
+}
+
+.middle {
+vertical-align: middle;
+}
+/*crate digger entry form...*/
+#cratedigger {
+margin-left: 50px;
+margin-right: 50px;
+}
+.center {
+margin: auto;
+width: 50%;
+padding: 10px;
+}
+
+.center-page {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+/*flash alert for Flask */
+.alert {
+margin-top: 20px;
+margin-bottom: 20px;
+background-color: #fdff835e;
+text-align: center;
+font-size: small;
+font-weight: bolder;
+opacity: .8;
+}
+div.row {
+margin-top: 20px;
+margin-bottom: 20px;
+}
+/* attributes for the dig container*/
+
+#digcontainer {
+margin: auto;
+width: 100%;
+background-color: #1b1b1b;
+align-content: center;
+padding-top: 30px;
+padding-bottom: 30px;
+}
+#digs {
+margin: auto;
+width: 75%;
+background-color: #ffffff;
+opacity: .8;
+align-content: center;
+padding: 10px;
+border: 15px black;
+transition: opacity 500ms;
+}
+#digs:hover {
+opacity: 1;
+}
+img.card-img-top {
+  transition: filter 2s;
+}
+img.card-img-top:hover {
+  filter: sepia(50%);
+}
+textarea {
+border: none;
+outline: none;
+}
+#editbut {
+background-color: #00000000;
+border: none;
+color: currentColor;
+opacity: .7;
+text-align: center;
+text-decoration: none;
+}
+#editbut:hover {
+opacity: 1;
+}
+@media (max-width:600px) {
+#mobilehide {
+display: none;
+}
+}
+/* bootstrap sign in forms*/
+.form-signin {
+width: 100%;
+max-width: 330px;
+padding: 15px;
+margin: auto;
+}
+.form-signin .checkbox {
+font-weight: 400;
+}
+.form-signin .form-floating:focus-within {
+z-index: 2;
+}
+.form-signin input[type="email"] {
+margin-bottom: -1px;
+border-bottom-right-radius: 0;
+border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+margin-bottom: 10px;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+#searchbar {
+margin-bottom: 100px;
+opacity: .3;
+transform: scale(.95);
+transition: opacity 1s, transform 500ms;
+}
+#searchbar:hover {
+opacity: 1;
+transform: scale(1);
+}
+
+textarea {
+  resize: none;
+}
+
+.bio {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
